@@ -1,0 +1,5 @@
+com\realestate\portal\model\Property.class
+com\realestate\portal\controller\PropertyViewController.class
+com\realestate\portal\repository\PropertyRepository.class
+com\realestate\portal\controller\PropertyRestController.class
+com\realestate\portal\service\PropertyService.class
