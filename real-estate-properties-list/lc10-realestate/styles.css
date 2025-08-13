@@ -110,6 +110,148 @@ Navigation
   cursor: pointer;
 }
 
+/* LISTING FORM */
+
+/* Listing Form & Search UI */
+.listing-form {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+  margin-bottom: 3rem;
+}
+
+.listing-form h2 {
+  font-size: 2.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--black);
+}
+
+.listing-form form {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.listing-form input,
+.listing-form button {
+  padding: 1.2rem;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.listing-form input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba(108,190,2,0.2);
+}
+
+.listing-form button {
+  background-color: var(--green);
+  color: var(--white);
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.listing-form button:hover {
+  background-color: #5aa102;
+}
+
+/* Search Bar Style */
+.search-bar-container {
+  margin-bottom: 2rem;
+}
+
+.search-bar-container input {
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.6rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.search-bar-container input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 2px rgba(108,190,2,0.2);
+}
+
+/* ------------------------------------------- LISTING FORM SECTION */
+
+/* Listing Form Styles */
+.listing-form {
+  padding: 2rem 1rem;
+  background: #f8f8f8;
+  border-top: 2px solid #eee;
+}
+
+.listing-form h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.btn-submit {
+  background: #6cbe02;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-submit:hover {
+  background: #5aa002;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .listing-form {
+    padding: 1rem;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 567px) {
+  .listing-form {
+    padding: 1.5rem;
+  }
+  .listing-form h2 {
+    font-size: 2rem;
+  }
+}
+
+
 @media only screen and (max-width: 768px) {
   .nav-list {
     position: fixed;
