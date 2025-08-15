@@ -1,74 +1,134 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Boxicons -->
-  <link th:href="@{https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css}" rel="stylesheet" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
 
   <!-- Font Awesome -->
-  <link
-    th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css}"
-    rel="stylesheet"
-  />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
-  <!-- Swiper js -->
-  <link
-    th:href="@{https://unpkg.com/swiper/swiper-bundle.min.css}"
-    rel="stylesheet"
-  />
+  <!-- Swiper CSS -->
+  <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Custom CSS from static folder -->
-  <link th:href="@{/css/styles.css}" rel="stylesheet" />
+  <!-- Local CSS -->
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  
 
-  <title>Real Estate Properties Listing Portal</title>
+  <title>Real Estate Property List Website</title>
 </head>
+
 <body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="navigation">
+      <div class="nav-center container d-flex">
+        <a th:href="@{/}" class="logo">
+          <h1>RENT</h1>
+        </a>
 
-  <!-- Insert Header fragment -->
-  <div th:replace="fragments/header :: header"></div>
+        <ul class="nav-list d-flex">
+          <li class="nav-item"><a th:href="@{/}" class="nav-link">Home</a></li>
+          <li class="nav-item"><a th:href="@{/shop}" class="nav-link">Shop</a></li>
+          <li class="nav-item"><a href="#terms" class="nav-link">Terms</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+          <li class="new-listing"><a th:href="@{/pages/newListing}" class="nav-link">Create New Listing</a></li>
+        </ul>
 
- <section class="section rent">
-  <div class="title">
-    <h1>Properties For Rent</h1>
-    <p>
-      Search over 2000 properties to rent from the top agents in the country
-    </p>
-  </div>
-
-  <div class="rent-center container">
-    <!-- Loop through properties list -->
-    <div class="box" th:each="property : ${properties}">
-      <div class="top">
-        <div class="overlay">
-          <img th:src="@{${property.imageUrl}}" alt="Property Image" />
-        </div>
-        <div class="pos">
-          <span>FEATURED</span>
-          <span th:text="${property.type}">TYPE</span>
-        </div>
-      </div>
-      <div class="bottom">
-        <p th:text="${property.title}">Property Title</p>
-        <div>
-          <span>₱<span th:text="${property.price}">0.00</span></span>
-          <span><i class="far fa-eye"></i></span>
+        <div class="hamburger">
+          <i class="bx bx-menu-alt-left"></i>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
+    <div class="hero">
+      <div class="swiper-container heroslider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img th:src="@{/images/pic1.jpg}" alt="Property 1" /></div>
+          <div class="swiper-slide"><img th:src="@{/images/pic2.jpg}" alt="Property 2" /></div>
+          <div class="swiper-slide"><img th:src="@{/images/pic5.jpg}" alt="Property 3" /></div>
+          <div class="swiper-slide"><img th:src="@{/images/pic6.jpg}" alt="Property 4" /></div>
+        </div>
+        <div class="swiper-button-next"><i class="bx bx-chevron-right swiper-icon"></i></div>
+        <div class="swiper-button-prev"><i class="bx bx-chevron-left swiper-icon"></i></div>
+      </div>
+    </div>
 
-  <!-- Insert Footer fragment -->
-  <div th:replace="fragments/footer :: footer"></div>
+    <div class="content">
+      <h1>Find your dream home</h1>
+      <div class="search">
+        <input type="text" placeholder="Type Address, City, State" />
+        <a href="">Search</a>
+      </div>
+    </div>
+  </header>
 
-  <!-- Scripts -->
+  <!-- Properties Section -->
+  <section class="section rent">
+    <div class="title">
+      <h1>Properties For Rent</h1>
+      <p>Search over 2000 properties to rent from the top agents in the country</p>
+    </div>
 
-  <script th:src="@{https://unpkg.com/swiper/swiper-bundle.min.js}"></script>
+    <div class="rent-center container">
+      <!-- Dynamic Property Loop -->
+      <div class="box" th:each="property : ${properties}">
+        <div class="top">
+          <div class="overlay">
+            <img th:src="@{${property.imageUrl}}" alt="Property Image" />
+          </div>
+          <div class="pos">
+            <span>FEATURED</span>
+            <span th:text="${property.type}">TYPE</span>
+          </div>
+        </div>
+        <div class="bottom">
+          <p th:text="${property.title}">Property Title</p>
+          <div>
+            <span>₱<span th:text="${property.price}">0.00</span></span>
+            <span><i class="far fa-eye"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="row">
+      <div class="col d-flex">
+        <h4>INFORMATION</h4>
+        <a href="">About us</a>
+        <a href="">Contact Us</a>
+        <a href="">Term & Conditions</a>
+        <a href="">Shipping Guide</a>
+      </div>
+      <div class="col d-flex">
+        <h4>USEFUL LINK</h4>
+        <a href="">Online Store</a>
+        <a href="">Customer Services</a>
+        <a href="">Promotion</a>
+        <a href="">Top Brands</a>
+      </div>
+      <div class="col d-flex social">
+        <span><i class="bx bxl-facebook-square"></i></span>
+        <span><i class="bx bxl-instagram-alt"></i></span>
+        <span><i class="bx bxl-github"></i></span>
+        <span><i class="bx bxl-twitter"></i></span>
+        <span><i class="bx bxl-pinterest"></i></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts (load at bottom for performance) -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script th:src="@{/js/slider.js}"></script>
   <script th:src="@{/js/index.js}"></script>
+
 </body>
 </html>
