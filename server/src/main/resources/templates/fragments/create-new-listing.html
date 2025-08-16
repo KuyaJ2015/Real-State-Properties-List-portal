@@ -13,22 +13,19 @@
 
   <div class="create-listing-container">
     <h2>Create New Listing</h2>
-    <form class="create-listing-form" th:action="@{/pages/newListing}" method="post" enctype="multipart/form-data">
+    <form class="create-listing-form" action="/pages/newListing" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="title">Property Title</label>
         <input type="text" id="title" name="title" placeholder="Enter property title" required>
       </div>
-
       <div class="form-group">
         <label for="price">Price</label>
         <input type="number" id="price" name="price" placeholder="₱0.00" required>
       </div>
-
       <div class="form-group">
         <label for="location">Location</label>
         <input type="text" id="location" name="location" placeholder="City, State" required>
       </div>
-
       <div class="form-group">
         <label for="type">Property Type</label>
         <select id="type" name="type" required>
@@ -38,17 +35,14 @@
           <option value="Condo">Condo</option>
         </select>
       </div>
-
       <div class="form-group" style="grid-column: span 2;">
         <label for="description">Description</label>
         <textarea id="description" name="description" placeholder="Write property details here..."></textarea>
       </div>
-
       <div class="form-group" style="grid-column: span 2;">
         <label for="image">Upload Image</label>
         <input type="file" id="image" name="image" accept="image/*">
       </div>
-
       <div class="form-actions">
         <button type="submit">Submit Listing</button>
       </div>

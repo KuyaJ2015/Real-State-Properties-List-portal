@@ -1,1 +1,97 @@
 /* Moved from server/src/main/resources/static/css/styles.css */
+/* ===== Create Listing Form ===== */
+.create-listing-container {
+	max-width: 800px;
+	margin: 3rem auto;
+	padding: 2rem;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.create-listing-container h2 {
+	text-align: center;
+	margin-bottom: 1.5rem;
+	color: var(--black);
+	font-size: 2rem;
+	font-weight: 600;
+}
+
+.create-listing-form {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1.2rem;
+}
+
+.create-listing-form .form-group {
+	display: flex;
+	flex-direction: column;
+}
+
+.create-listing-form label {
+	margin-bottom: 0.5rem;
+	font-weight: 500;
+	color: var(--black);
+}
+
+.create-listing-form input,
+.create-listing-form select,
+.create-listing-form textarea {
+	padding: 0.8rem;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	font-size: 1rem;
+	outline: none;
+	transition: all 0.2s ease-in-out;
+}
+
+.create-listing-form input:focus,
+.create-listing-form select:focus,
+.create-listing-form textarea:focus {
+	border-color: var(--green);
+	box-shadow: 0 0 5px rgba(108, 190, 2, 0.3);
+}
+
+.create-listing-form textarea {
+	resize: none;
+	grid-column: span 2;
+	min-height: 120px;
+}
+
+.create-listing-form .form-actions {
+	grid-column: span 2;
+	text-align: center;
+	margin-top: 1rem;
+}
+
+.create-listing-form button {
+	background: var(--green);
+	color: #fff;
+	padding: 0.9rem 2rem;
+	border: none;
+	border-radius: 10px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.create-listing-form button:hover {
+	background: #5aa102;
+	transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+	.create-listing-form {
+		grid-template-columns: 1fr;
+	}
+
+	.create-listing-form textarea {
+		grid-column: span 1;
+	}
+
+	.create-listing-form .form-actions {
+		grid-column: span 1;
+	}
+}
