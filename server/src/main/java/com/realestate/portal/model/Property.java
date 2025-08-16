@@ -20,21 +20,28 @@ public class Property {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotBlank(message = "Title is required")
     private String title;
-    
+
     @NotBlank(message = "Location is required")
     private String location;
-    
+
     @NotBlank(message = "Property type is required")
-    private String type; 
-    
+    private String type;
+
     @NotNull(message = "Price is required")
     @Positive(message = "Price must be positive")
     private Double price;
-    
+
     private String description;
-    
+
     private String imageUrl;
+
+    // Google Form fields
+    private String seller;
+    private String lotArea;
+    private String supportingDocs;
+    private String otherDetails;
+    private String photos; // store photo URLs or filenames as comma-separated string
 }

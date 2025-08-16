@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property Details</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <div class="property-details-container">
+        <h2 th:text="${property.title}">Lot Title</h2>
+        <img th:src="@{${property.imageUrl}}" alt="Lot Image" />
+        <p><strong>Seller:</strong> <span th:text="${property.seller}">Seller Name</span></p>
+        <p><strong>Lot Type:</strong> <span th:text="${property.type}">Lot Type</span></p>
+        <p><strong>Location:</strong> <span th:text="${property.location}">Location</span></p>
+        <p><strong>Lot Area:</strong> <span th:text="${property.lotArea}">Lot Area</span></p>
+        <p><strong>Selling Price:</strong> ₱<span th:text="${property.price}">0.00</span></p>
+        <p><strong>Description:</strong> <span th:text="${property.description}">Description</span></p>
+        <!-- Photos: display as images if available -->
+        <div th:if="${property.photos}">
+            <p><strong>Photos:</strong></p>
+            <div>
+                <img th:each="photo : ${#strings.arraySplit(property.photos, ',')}" th:src="@{${photo}}" alt="Lot Photo" style="max-width:120px;margin:5px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);" />
+            </div>
+        </div>
+        <a th:href="@{/}" class="cancel-btn">Back to List</a>
+    </div>
+</body>
+</html>

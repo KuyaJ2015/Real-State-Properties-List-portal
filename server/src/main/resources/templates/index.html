@@ -29,7 +29,7 @@
     <div class="navigation">
       <div class="nav-center container d-flex">
         <a th:href="@{/}" class="logo">
-          <h1>RENT</h1>
+          <h1>LOT PROPERTY FOR SALE</h1>
         </a>
 
         <ul class="nav-list d-flex">
@@ -61,42 +61,58 @@
     </div>
 
     <div class="content">
-      <h1>Find your dream home</h1>
-      <div class="search">
-        <input type="text" placeholder="Type Address, City, State" />
-        <a href="">Search</a>
-      </div>
+      <h1>Find your ideal lot property</h1>
+      <form class="search" th:action="@{/search}" method="get">
+        <input type="text" name="query" placeholder="Type Address, City, Province" />
+        <button type="submit" style="padding:1.5rem 4rem;background-color:var(--green);color:white;border-radius:0.5rem;border:none;font-size:1.6rem;">Search</button>
+      </form>
     </div>
   </header>
 
   <!-- Properties Section -->
   <section class="section rent">
     <div class="title">
-      <h1>Properties For Rent</h1>
-      <p>Search over 2000 properties to rent from the top agents in the country</p>
+      <h1>LOT PROPERTY FOR SALE</h1>
+      <p>Search over 2000 lot properties for sale from the top agents in the country</p>
     </div>
 
     <div class="rent-center container">
       <!-- Dynamic Property Loop -->
       <div class="box" th:each="property : ${properties}">
         <div class="top">
-          <div class="overlay">
-            <img th:src="@{${property.imageUrl}}" alt="Property Image" />
-          </div>
-          <div class="pos">
-            <span>FEATURED</span>
-            <span th:text="${property.type}">TYPE</span>
-          </div>
+          <a th:href="@{/properties/details/{id}(id=${property.id})}" style="text-decoration:none;color:inherit;">
+            <div class="overlay">
+              <img th:src="@{${property.imageUrl}}" alt="Property Image" />
+            </div>
+            <div class="property-details">
+              <h3 th:text="${property.title}">Title</h3>
+              <p><strong>Location:</strong> <span th:text="${property.location}">Location</span></p>
+              <p><strong>Type:</strong> <span th:text="${property.type}">Type</span></p>
+              <p><strong>Price:</strong> ₱<span th:text="${property.price}">0.00</span></p>
+              <p><strong>Description:</strong> <span th:text="${property.description}">Description</span></p>
+            </div>
+          </a>
         </div>
         <div class="bottom">
-          <p th:text="${property.title}">Property Title</p>
+          <a th:href="@{/properties/details/{id}(id=${property.id})}" style="text-decoration:none;color:inherit;">
+            <p th:text="${property.title}">Property Title</p>
+          </a>
           <div>
             <span>₱<span th:text="${property.price}">0.00</span></span>
             <span><i class="far fa-eye"></i></span>
           </div>
+          <!-- Update Button -->
+          <a th:href="@{/properties/edit/{id}(id=${property.id})}" class="update-btn">
+            <i class="fas fa-edit"></i> Update
+          </a>
+          <!-- Delete Button -->
+          <form th:action="@{/properties/delete/{id}(id=${property.id})}" method="post" style="margin-top:10px;">
+            <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this property?');">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </form>
         </div>
       </div>
-    </div>
   </section>
 
   <!-- Footer -->
@@ -125,6 +141,12 @@
       </div>
     </div>
   </footer>
+
+  <!-- Google Form Embed -->
+  <div style="max-width:600px;margin:2rem auto;">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdQJxjawMNZ0pleHRuA2FlbQIxMABicmlkETF2UkdYQkRvWWxhMjNvblBQAR7gUijZslvFZzmjrOn3ANSwCScUnddHAKQJth0Da_ER9p8Dc8qAS4cG0Bftyw_aem_jp455X-TB4_FufWo9tPQfQ/viewform?embedded=true"
+      width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  </div>
 
   <!-- Scripts (load at bottom for performance) -->
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

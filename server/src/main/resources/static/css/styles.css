@@ -716,3 +716,138 @@ footer .row {
     row-gap: 3rem;
   }
 }
+
+.delete-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}
+
+
+.update-btn {
+  background: #3498db;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 8px;
+  transition: background 0.3s ease;
+}
+
+.update-btn:hover {
+  background: #2980b9;
+}
+
+.edit-property-container, .delete-property-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+.edit-property-container h2, .delete-property-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--black);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.edit-property-container .form-group,
+.delete-property-container .form-group {
+  margin-bottom: 1.2rem;
+}
+
+.edit-property-container label,
+.delete-property-container label {
+  font-weight: 500;
+  color: var(--black);
+  margin-bottom: 0.5rem;
+}
+
+.edit-property-container input,
+.edit-property-container textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  margin-bottom: 0.8rem;
+}
+
+.edit-property-container textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.cancel-btn {
+  display: inline-block;
+  background: #bbb;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background: #888;
+}
+
+.property-details-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.property-details-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--black);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.property-details-container img {
+  max-width: 320px;
+  height: auto;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: block;
+}
+
+.property-details-container p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  text-align: left;
+  width: 100%;
+}
+
+.property-details-container .cancel-btn {
+  margin-top: 2rem;
+}
+
