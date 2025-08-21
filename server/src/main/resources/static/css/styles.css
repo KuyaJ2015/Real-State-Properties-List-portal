@@ -794,7 +794,7 @@ footer .row {
   resize: vertical;
 }
 
-.cancel-btn {
+.cancel-btn, .return-btn {
   display: inline-block;
   background: #bbb;
   color: #fff;
@@ -856,4 +856,11 @@ footer .row {
   font-size: 12px;
   padding-bottom: 6px;
   display: none;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
 }
