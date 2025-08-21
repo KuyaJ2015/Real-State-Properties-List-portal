@@ -66,72 +66,61 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// VALIDATION FOR UPDATING PROPERTIES
+// FORM VALIDATION
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('form-edit-property');
-    const inputs = form.querySelectorAll('input, textarea');
 
-    inputs.forEach(input => {
-        const errorMessage = input.nextElementSibling;
+    function setupFormValidation(formId) {
+        const form = document.getElementById(formId);
+        if (!form) return;
 
-        // Show error if input is empty
-        input.addEventListener('blur', () => {
-            if (!validateField(input)) {
-                errorMessage.style.display = 'block';
-            } else {
-                errorMessage.style.display = 'none';
-            }
-        });
+        const inputs = form.querySelectorAll('input, select, textarea');
 
-        // Hide error while typing / selecting file
-        input.addEventListener('input', () => {
-            if (validateField(input)) {
-                errorMessage.style.display = 'none';
-            } else {
-                errorMessage.style.display = 'block';
-            }
-        });
+        function validateField(input) {
+            if (!input.hasAttribute('required')) return true;
 
-        if (input.type === 'file') {
-            input.addEventListener('change', () => {
-                if (validateField(input)) {
-                    errorMessage.style.display = 'none';
-                } else {
-                    errorMessage.style.display = 'block';
-                }
-            });
-        }
-    });
+            const type = input.type;
+            const tag = input.tagName.toLowerCase();
 
-    // Final form submit validation
-    form.addEventListener('submit', (e) => {
-        let valid = true;
-        inputs.forEach(input => {
-            const errorMessage = input.nextElementSibling;
-            if (!validateField(input)) {
-                errorMessage.style.display = 'block';
-                valid = false;
-            } else {
-                errorMessage.style.display = 'none';
-            }
-        });
-        
-        if (!valid) {
-            e.preventDefault();
-        }
-    });
-
-    function validateField(input) {
-        if (input.hasAttribute('required')) {
-            if (input.type === 'file') {
-                return input.files.length > 0;
-            }
-            if (input.type === 'number') {
-                return input.value !== '' && !isNaN(input.value) && input.value > 0;
-            }
+            if (type === 'file') return input.files.length > 0;
+            if (type === 'number') return input.value.trim() !== '' && !isNaN(input.value) && Number(input.value) >= 0;
+            if (tag === 'select') return input.value.trim() !== '';
+            
             return input.value.trim() !== '';
         }
-        return true;
-    }
-});
 
+        function toggleError(input) {
+            const errorMessage = input.nextElementSibling;
+            if (!errorMessage) return;
+            errorMessage.style.display = validateField(input) ? 'none' : 'block';
+        }
+
+        // Live validation
+        inputs.forEach(input => {
+            input.addEventListener('input', () => toggleError(input));
+            if (input.type === 'file' || input.tagName.toLowerCase() === 'select') {
+                input.addEventListener('change', () => toggleError(input));
+            }
+            input.addEventListener('blur', () => toggleError(input));
+        });
+
+        // Submit validation
+        form.addEventListener('submit', (e) => {
+            let allValid = true;
+
+            inputs.forEach(input => {
+                toggleError(input);
+                if (!validateField(input)) allValid = false;
+            });
+
+            if (!allValid) {
+                e.preventDefault();
+                const firstError = form.querySelector('.error-message[style*="block"]');
+                if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+    }
+
+    // Initialize validation for CREATE and EDIT property
+    setupFormValidation('form-edit-property');
+    setupFormValidation('form-create-property');
+});

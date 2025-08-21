@@ -27,22 +27,19 @@
             <div class="form-group">
                 <label for="price">Price*</label>
                 <input type="number" id="price" min="1" th:field="*{price}" required>
-                <div class="error-message" >Price is required and should not be less than 1</div>
+                <div class="error-message" >Price is required</div>
             </div>
             <div class="form-group">
-                <label for="description">Description*</label>
-                <textarea id="description" th:field="*{description}" required></textarea>
-                <div class="error-message" >Description is required</div>
+                <label for="description">Description</label>
+                <textarea id="description" th:field="*{description}"></textarea>
             </div>
             <div class="form-group">
-                <label for="imageUrl">Image URL*</label>
-                <input type="text" id="imageUrl" th:field="*{imageUrl}" required>
-                <div class="error-message" >Image URL is required</div>
+                <label for="imageUrl">Image URL</label>
+                <input type="text" id="imageUrl" th:field="*{imageUrl}">
             </div>
             <div class="form-group">
-                <label for="supportingDocsFile">Attach Supporting Document(s)*</label>
-                <input type="file" id="supportingDocsFile" name="supportingDocsFile" multiple required>
-                <div class="error-message" >Supporting Document(s) is required</div>
+                <label for="supportingDocsFile">Attach Supporting Document(s)</label>
+                <input type="file" id="supportingDocsFile" name="supportingDocsFile" multiple>
             </div>
             <button type="submit" class="update-btn" onclick="return confirm('Are you sure you want to update this property?');">Update</button>
         </form>
