@@ -851,3 +851,9 @@ footer .row {
   margin-top: 2rem;
 }
 
+.error-message {
+  color: red;
+  font-size: 12px;
+  padding-bottom: 6px;
+  display: none;
+}
