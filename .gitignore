@@ -1,1 +1,10 @@
 **/target/
+
+# H2 Database files
+*.mv.db
+*.trace.db
+server/data/
+server/data_backup/
+
+# Uploads directory
+**/uploads/

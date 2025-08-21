@@ -13,7 +13,11 @@
 
   <div class="create-listing-container">
     <h2>Create New Listing</h2>
+    <div th:if="${error}" class="form-error-message" th:text="${error}"></div>
     <form id="form-create-property" class="create-listing-form" action="/pages/newListing" method="post" enctype="multipart/form-data">
+      <!-- Hidden title field generated from type and location -->
+      <input type="hidden" id="title" name="title">
+      
       <div class="form-group">
         <label for="seller">Seller*</label>
         <input type="text" id="seller" name="seller" placeholder="Enter seller name" required>
@@ -64,7 +68,7 @@
       </div>
       <div class="form-group" style="grid-column: span 2;">
         <label for="photos">Photos</label>
-        <input type="file" id="photos" name="photos" accept="image/*" multiple>
+        <input type="file" id="photos" name="photoFiles" accept="image/*" multiple>
       </div>
       <div class="form-actions">
         <button type="submit">Submit Listing</button>
@@ -74,7 +78,31 @@
   <div class="container"><a th:href="@{/}" class="return-btn">Return to Homepage</a></div>
   
   <script th:src="@{/js/index.js}"></script>
-
+  <script>
+    // Auto-generate title from type and location
+    document.addEventListener('DOMContentLoaded', function() {
+      const typeSelect = document.getElementById('type');
+      const locationInput = document.getElementById('location');
+      const titleInput = document.getElementById('title');
+      
+      function updateTitle() {
+        const type = typeSelect.value;
+        const location = locationInput.value;
+        
+        if (type && location) {
+          titleInput.value = type + ' in ' + location;
+        } else {
+          titleInput.value = '';
+        }
+      }
+      
+      typeSelect.addEventListener('change', updateTitle);
+      locationInput.addEventListener('input', updateTitle);
+      
+      // Initialize if values already exist
+      updateTitle();
+    });
+  </script>
 </body>
 
 </html>
