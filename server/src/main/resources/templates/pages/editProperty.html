@@ -8,37 +8,44 @@
 <body>
     <div class="edit-property-container">
         <h2>Edit Property</h2>
-    <form th:action="@{/properties/edit/{id}(id=${property.id})}" th:object="${property}" method="post" enctype="multipart/form-data">
+    <form id="form-edit-property" th:action="@{/properties/edit/{id}(id=${property.id})}" th:object="${property}" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title">Title*</label>
                 <input type="text" id="title" th:field="*{title}" required>
+                <div class="error-message" >Title is required</div>
             </div>
             <div class="form-group">
-                <label for="location">Location</label>
+                <label for="location">Location*</label>
                 <input type="text" id="location" th:field="*{location}" required>
+                <div class="error-message" >Location is required</div>
             </div>
             <div class="form-group">
-                <label for="type">Type</label>
+                <label for="type">Type*</label>
                 <input type="text" id="type" th:field="*{type}" required>
+                <div class="error-message" >Type is required</div>
             </div>
             <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" id="price" th:field="*{price}" required>
+                <label for="price">Price*</label>
+                <input type="number" id="price" min="1" th:field="*{price}" required>
+                <div class="error-message" >Price is required</div>
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" th:field="*{description}" required></textarea>
+                <textarea id="description" th:field="*{description}"></textarea>
             </div>
             <div class="form-group">
                 <label for="imageUrl">Image URL</label>
                 <input type="text" id="imageUrl" th:field="*{imageUrl}">
             </div>
             <div class="form-group">
-                <label for="supportingDocsFile">Attach Supporting Documents</label>
+                <label for="supportingDocsFile">Attach Supporting Document(s)</label>
                 <input type="file" id="supportingDocsFile" name="supportingDocsFile" multiple>
             </div>
             <button type="submit" class="update-btn" onclick="return confirm('Are you sure you want to update this property?');">Update</button>
         </form>
     </div>
+    <div class="container"><a th:href="@{/}" class="return-btn">Return to Homepage</a></div>
+    
+  <script th:src="@{/js/index.js}"></script>
 </body>
 </html>

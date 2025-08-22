@@ -14,13 +14,14 @@
   <div class="create-listing-container">
     <a th:href="@{/}" class="home-btn">Home</a>
     <h2>Create New Listing</h2>
-    <form class="create-listing-form" action="/pages/newListing" method="post" enctype="multipart/form-data">
+    <form id="form-create-property" class="create-listing-form" action="/pages/newListing" method="post" enctype="multipart/form-data">
       <div class="form-group">
-        <label for="seller">Seller</label>
+        <label for="seller">Seller*</label>
         <input type="text" id="seller" name="seller" placeholder="Enter seller name" required>
+        <div class="error-message" >Seller name is required</div>
       </div>
       <div class="form-group">
-        <label for="type">Lot Type</label>
+        <label for="type">Lot Type*</label>
         <select id="type" name="type" required>
           <option value="">Select type</option>
           <option value="Farm Lot">Farm Lot</option>
@@ -33,21 +34,25 @@
           <option value="Vacant Lot">Vacant Lot</option>
           <option value="Other">Other</option>
         </select>
+        <div class="error-message" >Lot Type is required</div>
       </div>
       <div class="form-group">
-        <label for="location">Location</label>
+        <label for="location">Location*</label>
         <input type="text" id="location" name="location" placeholder="Enter location" required>
+        <div class="error-message" >Location is required</div>
       </div>
       <div class="form-group">
-        <label for="lotArea">Lot Area</label>
+        <label for="lotArea">Lot Area*</label>
         <input type="text" id="lotArea" name="lotArea" placeholder="Enter lot area" required>
+        <div class="error-message" >Lot Area is required</div>
       </div>
       <div class="form-group">
-        <label for="price">Selling Price</label>
-        <input type="number" id="price" name="price" placeholder="₱0.00" required>
+        <label for="price">Selling Price*</label>
+        <input type="number" id="price" name="price" min="0" placeholder="₱0.00" required>
+        <div class="error-message" >Selling Price is required</div>
       </div>
       <div class="form-group">
-        <label for="supportingDocs">Supporting Documents</label>
+        <label for="supportingDocs">Supporting Document(s)</label>
         <input type="text" id="supportingDocs" name="supportingDocs" placeholder="Lot Title, Tax Declaration, etc.">
       </div>
       <div class="form-group">
@@ -67,6 +72,9 @@
       </div>
     </form>
   </div>
+  <div class="container"><a th:href="@{/}" class="return-btn">Return to Homepage</a></div>
+  
+  <script th:src="@{/js/index.js}"></script>
 
 </body>
 
