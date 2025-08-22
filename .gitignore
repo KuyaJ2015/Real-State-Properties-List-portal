@@ -1,1 +1,7 @@
 **/target/
+
+# H2 Database files
+**/data/*.db
+**/data/*.trace.db
+server/data/realestatedb.mv.db
+server/data/realestatedb.trace.db
