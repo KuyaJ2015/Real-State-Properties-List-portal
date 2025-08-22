@@ -12,6 +12,7 @@
 <body>
 
   <div class="create-listing-container">
+    <a th:href="@{/}" class="home-btn">Home</a>
     <h2>Create New Listing</h2>
     <form class="create-listing-form" action="/pages/newListing" method="post" enctype="multipart/form-data">
       <div class="form-group">
@@ -59,7 +60,7 @@
       </div>
       <div class="form-group" style="grid-column: span 2;">
         <label for="photos">Photos</label>
-        <input type="file" id="photos" name="photos" accept="image/*" multiple>
+  <input type="file" id="photoFiles" name="photoFiles" accept="image/*" multiple>
       </div>
       <div class="form-actions">
         <button type="submit">Submit Listing</button>

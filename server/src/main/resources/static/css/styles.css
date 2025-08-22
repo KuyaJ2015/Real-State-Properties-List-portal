@@ -1,3 +1,20 @@
+.home-btn {
+  display: inline-block;
+  margin-bottom: 1rem;
+  margin-right: auto;
+  background: #007bff;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s;
+  position: relative;
+  left: 0;
+}
+.home-btn:hover {
+  background: #0056b3;
+}
 /* ===== Create Listing Form ===== */
 .create-listing-container {
   max-width: 800px;

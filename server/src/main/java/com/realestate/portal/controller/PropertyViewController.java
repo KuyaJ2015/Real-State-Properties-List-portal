@@ -13,6 +13,10 @@ import java.util.List;
 
 @Controller
 public class PropertyViewController {
+    @org.springframework.web.bind.annotation.InitBinder
+    public void initBinder(org.springframework.web.bind.WebDataBinder binder) {
+        binder.setDisallowedFields("photos");
+    }
 
     private final PropertyService propertyService;
 
@@ -66,6 +70,7 @@ public class PropertyViewController {
             @org.springframework.web.bind.annotation.ModelAttribute Property property,
             @org.springframework.web.bind.annotation.RequestParam("image") org.springframework.web.multipart.MultipartFile image,
             @org.springframework.web.bind.annotation.RequestParam(value = "supportingDocsFile", required = false) org.springframework.web.multipart.MultipartFile[] supportingDocsFiles,
+            @org.springframework.web.bind.annotation.RequestParam(value = "photoFiles", required = false) org.springframework.web.multipart.MultipartFile[] photoFiles,
             org.springframework.ui.Model model) {
         // Save image to static/images and set imageUrl in property using absolute path
         if (image != null && !image.isEmpty()) {
@@ -79,6 +84,25 @@ public class PropertyViewController {
                 // Log error and continue without image
                 e.printStackTrace();
             }
+        }
+        // Save photos
+        if (photoFiles != null && photoFiles.length > 0) {
+            StringBuilder photoPaths = new StringBuilder();
+            String uploadDir = new java.io.File("src/main/resources/static/images").getAbsolutePath();
+            for (org.springframework.web.multipart.MultipartFile photoFile : photoFiles) {
+                if (photoFile != null && !photoFile.isEmpty()) {
+                    try {
+                        String fileName = System.currentTimeMillis() + "_" + photoFile.getOriginalFilename();
+                        java.nio.file.Path filePath = java.nio.file.Paths.get(uploadDir, fileName);
+                        java.nio.file.Files.copy(photoFile.getInputStream(), filePath, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                        if (photoPaths.length() > 0) photoPaths.append(",");
+                        photoPaths.append("/images/" + fileName);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            property.setPhotos(photoPaths.toString());
         }
         // Save supporting documents
         if (supportingDocsFiles != null && supportingDocsFiles.length > 0) {

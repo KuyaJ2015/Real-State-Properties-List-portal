@@ -43,5 +43,6 @@ public class Property {
     private String lotArea;
     private String supportingDocs;
     private String otherDetails;
-    private String photos; // store photo URLs or filenames as comma-separated string
+    @jakarta.persistence.Transient
+    private String photos; // store photo URLs or filenames as comma-separated string (ignored by JPA)
 }
